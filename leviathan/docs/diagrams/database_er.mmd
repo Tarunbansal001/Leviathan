@@ -1,0 +1,61 @@
+erDiagram
+    USERS ||--o{ SAVED_OPPORTUNITIES : saves
+    OPPORTUNITIES ||--o{ SAVED_OPPORTUNITIES : "is saved as"
+    USERS ||--o{ PREPARATION_PROGRESS : records
+    RESOURCES ||--o{ PREPARATION_PROGRESS : "is tracked in"
+    CATEGORIES ||--o{ OPPORTUNITIES : classifies
+    CATEGORIES ||--o{ RESOURCES : classifies
+    OPPORTUNITIES ||--o{ OPPORTUNITY_RESOURCES : "links to"
+    RESOURCES ||--o{ OPPORTUNITY_RESOURCES : "linked from"
+
+    USERS {
+        bigint user_id PK
+        varchar full_name
+        varchar email UK
+        varchar password_hash
+        varchar role
+        datetime created_at
+    }
+    CATEGORIES {
+        int category_id PK
+        varchar name UK
+        varchar kind
+    }
+    OPPORTUNITIES {
+        bigint opportunity_id PK
+        varchar title
+        text description
+        int category_id FK
+        text eligibility
+        varchar skills_required
+        date deadline
+        varchar official_url
+        varchar status
+        datetime created_at
+        datetime updated_at
+    }
+    RESOURCES {
+        bigint resource_id PK
+        varchar title
+        text description
+        int category_id FK
+        varchar resource_type
+        varchar resource_url
+        datetime created_at
+        datetime updated_at
+    }
+    OPPORTUNITY_RESOURCES {
+        bigint opportunity_id PK, FK
+        bigint resource_id PK, FK
+    }
+    SAVED_OPPORTUNITIES {
+        bigint user_id PK, FK
+        bigint opportunity_id PK, FK
+        datetime saved_at
+    }
+    PREPARATION_PROGRESS {
+        bigint user_id PK, FK
+        bigint resource_id PK, FK
+        varchar status
+        datetime updated_at
+    }

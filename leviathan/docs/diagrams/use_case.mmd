@@ -1,0 +1,33 @@
+flowchart LR
+    Student(["Student"])
+    Admin(["Administrator"])
+    subgraph ORVO["ORVO Platform (Proposed)"]
+        UC1(["Browse opportunities"])
+        UC2(["Search by keyword"])
+        UC3(["Filter opportunities"])
+        UC4(["View opportunity details"])
+        UC5(["Access preparation resources"])
+        UC6(["Register and log in"])
+        UC7(["Save opportunity"])
+        UC8(["Track deadlines and progress"])
+        UC9(["Manage opportunities"])
+        UC10(["Manage resources"])
+        UC11(["Verify deadlines and source links"])
+    end
+    Student --- UC1
+    Student --- UC2
+    Student --- UC3
+    Student --- UC4
+    Student --- UC5
+    Student --- UC6
+    Student --- UC7
+    Student --- UC8
+    Admin --- UC6
+    Admin --- UC9
+    Admin --- UC10
+    Admin --- UC11
+    UC2 -. "extends" .-> UC1
+    UC3 -. "extends" .-> UC1
+    UC7 -. "includes" .-> UC6
+    UC8 -. "includes" .-> UC6
+    UC4 -. "extends" .-> UC5

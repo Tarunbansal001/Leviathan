@@ -1,0 +1,25 @@
+flowchart TB
+    subgraph Clients["Client Layer (Proposed)"]
+        S["Student<br/>Web Browser"]
+        A["Administrator<br/>Web Browser"]
+    end
+    subgraph FE["Frontend (HTML, CSS, JavaScript)"]
+        P1["Public and Student Pages<br/>Browse, Search, Details, Saved"]
+        P2["Admin Pages<br/>Manage Opportunities and Resources"]
+    end
+    subgraph BE["Backend (Java, Spring Boot) - REST API"]
+        C["Controllers<br/>Request handling and validation"]
+        SV["Services<br/>Business rules"]
+        R["Repositories<br/>Data access"]
+        SEC["Security Layer<br/>Authentication and role checks"]
+    end
+    DB[("MySQL Database")]
+    S --> P1
+    A --> P2
+    P1 -- "HTTPS / JSON" --> SEC
+    P2 -- "HTTPS / JSON" --> SEC
+    SEC --> C
+    C --> SV
+    SV --> R
+    R -- "SQL" --> DB
+    P1 -. "Opens official link" .-> EXT["Official Opportunity Websites<br/>(external, not integrated)"]

@@ -1,0 +1,23 @@
+flowchart TD
+    Start([Student opens ORVO]) --> Browse[Browse or search opportunities]
+    Browse --> Filter[Apply filters: type, skills, eligibility, deadline]
+    Filter --> Select[Select an opportunity]
+    Select --> Detail[View details, eligibility, deadline, official link]
+    Detail --> Res[View linked preparation resources]
+    Detail --> Auth{Logged in?}
+    Auth -- No --> Login[Register or log in]
+    Login --> Save
+    Auth -- Yes --> Save[Save opportunity]
+    Save --> Track[Track deadline and update preparation progress]
+    Track --> Apply[Apply on official external website]
+    Apply --> End([End])
+
+    AStart([Administrator logs in]) --> AChk{Admin role verified?}
+    AChk -- No --> Deny[Access denied]
+    AChk -- Yes --> Manage[Open admin dashboard]
+    Manage --> Op[Add, edit or remove opportunity]
+    Manage --> Rs[Add, edit or remove resource]
+    Op --> Link[Link resources to opportunity]
+    Rs --> Link
+    Link --> Review[Review and update published information]
+    Review --> AEnd([End])
